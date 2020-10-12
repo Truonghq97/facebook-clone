@@ -8,15 +8,20 @@ import StorefrontIcon from "@material-ui/icons/Storefront";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
 import { ExpandMoreOutlined } from "@material-ui/icons";
 
+import { useStateValue } from "../../contextAPI/StateProvider";
+
 import SidebarRow from "../sidebarRow/SidebarRow";
 import "./Sidebar.css";
 
 function Sidebar() {
+
+  const [{ user }, dispatch] = useStateValue();
+
   return (
     <div className="sidebar">
       <SidebarRow
-        src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.0-9/120734594_3483412948387853_2471357943453684604_o.jpg?_nc_cat=104&_nc_sid=09cbfe&_nc_ohc=AmHDi6vEIjYAX9hkkL_&_nc_ht=scontent.fsgn2-5.fna&oh=47801cfffc3e3363b9bf88708ee72adf&oe=5FA9D76B"
-        title="IU"
+        src={user.photoURL}
+        title={user.displayName}
       />
       <SidebarRow
         Icon={LocalHospitalIcon}
