@@ -5,10 +5,12 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useStateValue } from "../../contextAPI/StateProvider";
 
+import firebase from "firebase";
+import db from "../../firebase";
+
 import "./MessageSender.css";
 
 function MessageRender() {
-
   const [{ user }, dispatch] = useStateValue();
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -17,13 +19,19 @@ function MessageRender() {
     e.preventDefault();
 
     // Some clever db stuff
+    db.collection("posts").add({
+      message: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      profilePic: user.photoURL,
+      userName: user.displayName,
+      image: imageUrl,
+    });
 
     setInput("");
-    setImageUrl("")
+    setImageUrl("");
   };
 
   return (
-
     <div className="messageRender">
       <div className="messageRender__top">
         <Avatar src={user.photoURL} />

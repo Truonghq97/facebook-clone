@@ -10,7 +10,7 @@ import { useStateValue } from "./contextAPI/StateProvider";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
- 
+
   return (
     <div className="app">
       {!user ? (
@@ -22,7 +22,7 @@ function App() {
           <div className="app__body">
             <Sidebar />
             <Feed />
-            {/* <Widgets /> */}
+            <Widgets />
           </div>
         </>
       )}
